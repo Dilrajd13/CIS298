@@ -1,0 +1,21 @@
+Create a retirement planning calculator
+Ask the user how old they are, and how old they want to be when they retire.
+Ask the user for 4 starting balances
+Money stored under their mattress
+Money in bank savings - earns a fixed 2% done
+
+Money in bonds - read from the bond rate file
+
+Money in stocks - read from the stock file
+
+For every year until they retire, ask if they want to put money into any of the 4 accounts,
+allow them to keep adding money until they are done
+
+Apply yearly rate of return to the accounts
+
+print current balances of each account and total balance
+
+also print the yearly account balances and total to a csv file ( wait for end is most efficient )
+
+After they reach retirement age, print totals for each account, total retirement savings,
+ and then an adjusted balance for inflation - assume a 2% inflation
