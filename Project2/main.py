@@ -79,7 +79,7 @@ for x in range (userAge,userRetireAge):
     balance = mUnderMattress+mBankSav+mBonds+mStocks,
     data["Total"] = balance
     out.append(data)
-    print(out)
+
 
     Year += 1
 
@@ -119,7 +119,7 @@ data["StocksAccount"]=mStocks
 balance=mUnderMattress+mBankSav + mBonds + mStocks
 data["Total"]=balance
 out.append(data)
-print(out)
+
 writeCSV(out)
 
 print("Congratulations You HAVE ReAChEd ReTiReMeNt!!!!!!!")
