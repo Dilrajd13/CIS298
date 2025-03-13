@@ -205,7 +205,7 @@ if __name__ == '__main__':
             count = 0
             while True:
                 count += 1
-                if int(input("If you want to add plugboard pairs press 1 to exit press 2")) == 1 and count < 4:
+                if int(input("If you want to add plugboard pairs press 1 to exit press 2")) == 1 and count < 11:
                     print("Enter a letter then enter the letter you want to connect ")
                     key = input("Mapping ").upper()
                     val = input("TO ").upper()
