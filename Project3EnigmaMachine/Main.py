@@ -168,76 +168,76 @@ class PlugBoard:
 
         return msg
 
+if __name__ == '__main__':
+    while True:
 
-while True:
+        choice = int(input("""WILLKOMMEN BEI DER NAZI ENIGMA MACHINE
+        1.CONFIGURE ENIGMA MACHINE SETTINGS
+        2.ENCRYPT Message
+        3.DECRYPT Message
+        4.EXIT
+        """))
+        if choice == 1:
+            print("SETTING")
+            one = EnigmaMachine()
 
-    choice = int(input("""WILLKOMMEN BEI DER NAZI ENIGMA MACHINE
-    1.CONFIGURE ENIGMA MACHINE SETTINGS
-    2.ENCRYPT Message
-    3.DECRYPT Message
-    4.EXIT
-    """))
-    if choice == 1:
-        print("SETTING")
-        one = EnigmaMachine()
+            one.r1 = int(input("Enter first rotor"))
+            one.r1p = int(input("Enter first rotor position"))
+            one.new_rotor_config(one.r1, "rotor1", one.r1p)
 
-        one.r1 = int(input("Enter first rotor"))
-        one.r1p = int(input("Enter first rotor position"))
-        one.new_rotor_config(one.r1, "rotor1", one.r1p)
+            print("Rotor1 configuration:", one.rotor1.rotoconfig)
+            print("Rotor1 start position:", one.rotor1.rotostartpos)
 
-        print("Rotor1 configuration:", one.rotor1.rotoconfig)
-        print("Rotor1 start position:", one.rotor1.rotostartpos)
+            one.r2 = int(input("Enter second rotor"))
+            one.r2p = int(input("Enter second rotor position"))
+            one.new_rotor_config(one.r2, "rotor2", one.r2p)
 
-        one.r2 = int(input("Enter second rotor"))
-        one.r2p = int(input("Enter second rotor position"))
-        one.new_rotor_config(one.r2, "rotor2", one.r2p)
+            print("Rotor2 configuration:", one.rotor2.rotoconfig)
+            print("Rotor2 start position:", one.rotor2.rotostartpos)
 
-        print("Rotor2 configuration:", one.rotor2.rotoconfig)
-        print("Rotor2 start position:", one.rotor2.rotostartpos)
+            one.r3 = int(input("Enter third rotor"))
+            one.r3p = int(input("Enter third rotor position"))
+            one.new_rotor_config(one.r3, "rotor3", one.r3p)
 
-        one.r3 = int(input("Enter third rotor"))
-        one.r3p = int(input("Enter third rotor position"))
-        one.new_rotor_config(one.r3, "rotor3", one.r3p)
+            print("Rotor3 configuration:", one.rotor3.rotoconfig)
+            print("Rotor3 start position:", one.rotor3.rotostartpos)
 
-        print("Rotor3 configuration:", one.rotor3.rotoconfig)
-        print("Rotor3 start position:", one.rotor3.rotostartpos)
+            count = 0
+            while True:
+                count += 1
+                if int(input("If you want to add plugboard pairs press 1 to exit press 2")) == 1 and count < 4:
+                    print("Enter a letter then enter the letter you want to connect ")
+                    key = input("Mapping ").upper()
+                    val = input("TO ").upper()
 
-        count = 0
-        while True:
-            count += 1
-            if int(input("If you want to add plugboard pairs press 1 to exit press 2")) == 1 and count < 4:
-                print("Enter a letter then enter the letter you want to connect ")
-                key = input("Mapping ").upper()
-                val = input("TO ").upper()
+                    if key != val:
+                        one.plugset[key] = val
+                        one.plugset[val] = key
+                    else:
+                        print("cant map to yourself")
 
-                if key != val:
-                    one.plugset[key] = val
-                    one.plugset[val] = key
                 else:
-                    print("cant map to yourself")
+                    print("max pairs reached or User Exit")
+                    break
 
-            else:
-                print("max pairs reached or User Exit")
-                break
+            # if plugset does not equal empty dic then transfer plugboard settings.
+            if one.plugset != {}:
+                plug = PlugBoard(one.plugset)
 
-        # if plugset does not equal empty dic then transfer plugboard settings.
-        if one.plugset != {}:
-            plug = PlugBoard(one.plugset)
-
-    elif choice == 2:
-        print("ENCRYPT")
-        message = input("Please Enter a Message to Encrypt.").upper()
-        encrypted_text = one.encryption(message)
-        # print(f'{encrypted_text} ORIGINAL MESSAGE')
+        elif choice == 2:
+            print("ENCRYPT")
+            message = input("Please Enter a Message to Encrypt.").upper()
+            encrypted_text = one.encryption(message)
+            # print(f'{encrypted_text} ORIGINAL MESSAGE')
 
 
 
-    elif choice == 3:
-        print("DECRYPT")
-        encrypted_message = input("Please Enter a Message to Decrypt: ").upper()
-        decrypted_text = one.decryption(encrypted_message)
+        elif choice == 3:
+            print("DECRYPT")
+            encrypted_message = input("Please Enter a Message to Decrypt: ").upper()
+            decrypted_text = one.decryption(encrypted_message)
 
-    elif choice == 4:
-        print("EXIT")
-        break
+        elif choice == 4:
+            print("EXIT")
+            break
 
