@@ -1,7 +1,8 @@
 # Dilraj Dhillon
 
 import csv
-
+import numpy as np
+import matplotlib.pyplot as plt
 
 print("Welcome to Retirement Planning Calculator\nWe need some information before we begin  ")
 
@@ -76,7 +77,7 @@ for x in range (userAge,userRetireAge):
     data["BankSavingsAccount"]=mBankSav
     data["BondsAccount"]=mBonds
     data["StocksAccount"]=mStocks
-    balance = mUnderMattress+mBankSav+mBonds+mStocks,
+    balance = mUnderMattress+mBankSav+mBonds+mStocks
     data["Total"] = balance
     out.append(data)
 
@@ -131,3 +132,22 @@ YearsThatHavePassed= userRetireAge-userAge
 inflated=balance/pow(1.02,YearsThatHavePassed)
 print(f'Adjusted For Inflation Balance: {inflated}')
 print("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+
+
+years = []
+totals = []
+
+with open("RetirementRecord.csv", "r") as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        years.append(int(row["Year"]))
+        totals.append(float(row["Total"]))
+
+plt.figure(figsize=(10, 6))
+plt.plot(years, totals, marker='o', linestyle='-', label="Total Savings")
+plt.title("Retirement Savings Over Time")
+plt.xlabel("Year")
+plt.ylabel("Total Savings")
+plt.grid(True)
+plt.legend()
+plt.show()
